@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub 핵심 용어 해설 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom gradient backgrounds */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        /* Frosted glass effect */
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hover animations */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Code syntax highlighting */
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+        
+        /* Navigation active state */
+        .nav-active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-gray-200">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <h1 class="text-xl font-bold text-gray-800">GitHub 용어 가이드</h1>
+                <button id="nav-toggle" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <div id="nav-menu" class="hidden md:block mt-4 md:mt-0">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 text-sm">
+                    <a href="#overview" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">개요</a>
+                    <a href="#git" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Git</a>
+                    <a href="#github" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">GitHub</a>
+                    <a href="#repository" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Repository</a>
+                    <a href="#commit" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Commit</a>
+                    <a href="#branch" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Branch</a>
+                    <a href="#push-pull" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Push & Pull</a>
+                    <a href="#merge" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Merge</a>
+                    <a href="#pull-request" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Pull Request</a>
+                    <a href="#fork" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Fork</a>
+                    <a href="#clone" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Clone</a>
+                    <a href="#github-flow" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">GitHub Flow</a>
+                    <a href="#issues" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Issues</a>
+                    <a href="#gist" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Gist</a>
+                    <a href="#gitignore" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">Gitignore</a>
+                    <a href="#accounts" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">계정관리</a>
+                    <a href="#plans" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">플랜권한</a>
+                    <a href="#summary" class="nav-link px-3 py-2 rounded-lg text-center hover:bg-gray-100 transition-colors">요약</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    GitHub 핵심 용어 해설
+                </h1>
+                <h2 class="text-xl md:text-2xl mb-8 opacity-90">
+                    Git 기반 협업의 핵심 이해와 고급 전략
+                </h2>
+                <p class="text-lg mb-8 max-w-3xl mx-auto opacity-80">
+                    버전 관리와 팀 프로젝트 협업을 위한 필수 개념 습득, 고급 활용법, 모범 사례 및 주의사항 심층 분석
+                </p>
+                <a href="#overview" class="inline-block bg-white text-gray-800 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                    시작하기
+                </a>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Git과 GitHub는 왜 개발 필수 도구일까요?</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">📊</div>
+                            <h3 class="text-xl font-bold">체계적인 버전 관리</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>스냅샷 기반 이력:</strong> 파일 변경 이력을 스냅샷으로 기록, 특정 시점으로 복원 가능</li>
+                            <li><strong>변경 추적 및 감사:</strong> 모든 변경(누가, 언제, 무엇을) 명확히 추적</li>
+                            <li><strong>데이터 무결성:</strong> SHA-1 해시를 통해 모든 객체의 무결성 보장</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <p class="text-sm"><strong>💡 고급 팁:</strong> <code class="bg-gray-200 px-1 rounded">git log --graph --oneline --decorate</code>로 커밋 히스토리 시각화</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">🤝</div>
+                            <h3 class="text-xl font-bold">효율적인 팀 협업</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>분산/중앙 집중식 협업:</strong> 로컬 작업 후 원격(GitHub) 공유</li>
+                            <li><strong>병렬 개발:</strong> 브랜치를 활용하여 여러 기능/수정 동시 진행</li>
+                            <li><strong>투명한 소통:</strong> Issue Tracking, Pull Request 댓글 등으로 투명한 공유</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-green-50 border-l-4 border-green-400 rounded">
+                            <p class="text-sm"><strong>✅ 모범 사례:</strong> 작업 단위별로 브랜치 생성, 작은 단위의 PR, 상세한 설명 첨부</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">🔒</div>
+                            <h3 class="text-xl font-bold">안정적인 백업 및 복구</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>원격 저장소 백업:</strong> GitHub 등 원격 서버에 코드 및 이력 저장</li>
+                            <li><strong>쉬운 복구:</strong> 각 커밋이 스냅샷이므로 특정 시점으로 쉽게 복원</li>
+                            <li><strong>분산 복사본:</strong> 모든 팀원이 전체 이력의 복사본을 가져 데이터 유실 위험 감소</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-red-50 border-l-4 border-red-400 rounded">
+                            <p class="text-sm"><strong>⚠️ 주의사항:</strong> 로컬 작업 후 주기적으로 원격 리포지토리에 Push하여 백업 생활화</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl hover-lift">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">🌍</div>
+                            <h3 class="text-xl font-bold">오픈소스 참여 및 개발 생태계</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><strong>글로벌 커뮤니티 허브:</strong> 다양한 오픈소스 프로젝트 탐색, 기여, 학습 기회</li>
+                            <li><strong>포트폴리오 구축:</strong> GitHub 프로필은 개발 역량을 보여주는 강력한 포트폴리오</li>
+                            <li><strong>자동화 및 확장성:</strong> GitHub Actions, Webhooks, API 등으로 워크플로 자동화</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
+                            <p class="text-sm"><strong>📚 추가 정보:</strong> GitLab, Bitbucket 등 다양한 Git 호스팅 서비스 존재</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div class="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-2xl shadow-lg">
+                        <p class="text-lg font-semibold">결론: Git으로 코드를 '관리'하고, GitHub로 코드를 '공유 및 협업'하세요!</p>
+                    </div>
+                </div>
+            </div>
+</section>
+
+        <!-- Git Section -->
+        <section id="git" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Git: 분산 버전 관리 시스템</h2>
+                    <p class="text-xl text-gray-600">로컬에서 강력하게! 코드 이력 관리의 핵심</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700">
+                            <p>Linux Torvalds가 개발한 오픈 소스 <strong>분산 버전 제어 시스템(DVCS)</strong>입니다.</p>
+                            <p>파일 변경 사항을 <strong>스냅샷</strong> 형태로 기록하며, 빠른 속도와 데이터 무결성을 보장합니다.</p>
+                            <p>주로 로컬 컴퓨터에서 CLI 또는 GUI를 통해 작업합니다 (<code class="bg-gray-200 px-1 rounded">commit</code>, <code class="bg-gray-200 px-1 rounded">branch</code>, <code class="bg-gray-200 px-1 rounded">merge</code> 등).</p>
+                        </div>
+
+                        <div class="mt-8">
+                            <h4 class="text-xl font-semibold mb-4">핵심 개념</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">DVCS (분산 버전 관리)</h5>
+                                    <p class="text-sm text-gray-700">각 개발자가 전체 이력 복사본 소유, 오프라인 작업 가능</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-green-800 mb-2">SHA-1 해시</h5>
+                                    <p class="text-sm text-gray-700">커밋, 파일 등 모든 객체의 고유 식별자 및 무결성 검증</p>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-800 mb-2">Working Tree</h5>
+                                    <p class="text-sm text-gray-700">실제 파일들이 있는 작업 디렉토리</p>
+                                </div>
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Staging Area</h5>
+                                    <p class="text-sm text-gray-700">커밋할 변경사항을 준비하는 임시 저장 영역</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-green-50 border-l-4 border-green-400 rounded">
+                            <h4 class="font-semibold text-green-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li><code class="bg-gray-200 px-1 rounded">git stash</code>: 작업 중인 변경사항 임시 저장 및 복원</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git rebase -i</code>: 대화형 리베이스로 커밋 이력 정리</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git bisect</code>: 버그를 유발한 커밋을 이진 탐색으로 신속하게 찾기</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git cherry-pick</code>: 다른 브랜치의 특정 커밋만 현재 브랜치로 가져오기</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-red-50 border-l-4 border-red-400 rounded">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ 주의사항</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>커밋 메시지는 명확하고 상세하게 (모호한 메시지 지양)</li>
+                                <li>Push된 커밋 이력 변경은 팀 협업 시 극히 신중하게</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-8 p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">💾 비유적 이해</h4>
+                            <p class="text-gray-700">'개인 컴퓨터의 완벽한 문서 백업 및 수정 이력 추적 시스템'. 인터넷 연결 없이도 작동하는 '스마트한 세이브 포인트'.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Section -->
+        <section id="github" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">GitHub: Git 호스팅 및 협업 플랫폼</h2>
+                    <p class="text-xl text-gray-600">온라인에서 함께! 코드 공유와 협업의 중심</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>Git 리포지토리를 위한 <strong>웹 기반 호스팅 서비스</strong> 및 개발 플랫폼입니다. (Microsoft 소유)</p>
+                            <p>코드 원격 저장, 공유, 팀 협업을 위한 다양한 기능을 제공합니다.</p>
+                            <p><strong>소셜 코딩(Social Coding)</strong> 플랫폼으로, 개발자 커뮤니티 및 오픈소스 생태계의 중심 역할을 합니다.</p>
+                        </div>
+
+                        <h4 class="text-xl font-semibold mb-4">주요 기능 및 도구</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-blue-600 mb-2">Pull Request (PR)</h5>
+                                <p class="text-sm text-gray-600">코드 리뷰 및 병합 제안</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-green-600 mb-2">Issue Tracking</h5>
+                                <p class="text-sm text-gray-600">작업, 버그, 기능 요청 관리</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-purple-600 mb-2">Code Review</h5>
+                                <p class="text-sm text-gray-600">PR을 통한 코드 검토 및 피드백</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-orange-600 mb-2">Project Boards</h5>
+                                <p class="text-sm text-gray-600">칸반 스타일 작업 관리</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-red-600 mb-2">GitHub Actions</h5>
+                                <p class="text-sm text-gray-600">CI/CD 등 워크플로우 자동화</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <h5 class="font-semibold text-indigo-600 mb-2">GitHub Pages</h5>
+                                <p class="text-sm text-gray-600">정적 웹사이트 무료 호스팅</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-green-50 border-l-4 border-green-400 rounded mb-6">
+                            <h4 class="font-semibold text-green-800 mb-2">✅ 모범 사례</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>프로젝트 <code class="bg-gray-200 px-1 rounded">README.md</code> 파일 상세히 작성</li>
+                                <li>Pull Request 및 Issue 기능을 적극 활용하여 투명한 소통 및 기록</li>
+                                <li>보안 기능(2FA, Secrets) 적극 활용</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">☁️ 비유적 이해</h4>
+                            <p class="text-gray-700">'Git으로 만든 작품(리포지토리)들을 전시하고, 공동 작업하며, 프로젝트를 관리하는 온라인 갤러리 및 협업 오피스'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repository Section -->
+        <section id="repository" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Repository (리포지토리)</h2>
+                    <p class="text-xl text-gray-600">프로젝트의 모든 것을 담는 저장소</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>프로젝트의 모든 파일(코드, 문서, 이미지 등)과 전체 변경 이력(커밋 히스토리)을 저장합니다.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800 mb-2">로컬 리포지토리</h4>
+                                    <p class="text-sm text-gray-700">개발자 PC에 위치, 실제 작업 공간</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-800 mb-2">원격 리포지토리</h4>
+                                    <p class="text-sm text-gray-700">GitHub 등 서버에 호스팅, 팀 협업/백업 중심</p>
+                                </div>
+                            </div>
+                            <p>주요 구성 파일: <code class="bg-gray-200 px-1 rounded">README.md</code> (프로젝트 설명), <code class="bg-gray-200 px-1 rounded">.gitignore</code> (무시할 파일 지정), <code class="bg-gray-200 px-1 rounded">LICENSE</code> (라이선스)</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 관리</h4>
+                            <ul class="text-sm space-y-2 text-gray-700">
+                                <li><strong>Submodule:</strong> 다른 Git 리포지토리를 하위 디렉토리로 포함 (외부 라이브러리 의존성 관리)</li>
+                                <li><strong>Subtree:</strong> 다른 리포지토리 코드를 현재 리포지토리에 복사/병합</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-green-50 border-l-4 border-green-400 rounded mb-6">
+                            <h4 class="font-semibold text-green-800 mb-2">✅ 모범 사례</h4>
+                            <ul class="
+text-sm space-y-1 text-gray-700">
+                                <li>리포지토리 이름은 명확하고 간결하게</li>
+                                <li><code class="bg-gray-200 px-1 rounded">README.md</code> 상세히 작성 (소개, 설치, 사용법, 기여 방법)</li>
+                                <li>민감 정보나 빌드 결과물은 <code class="bg-gray-200 px-1 rounded">.gitignore</code>로 철저히 관리</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-red-50 border-l-4 border-red-400 rounded mb-6">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ 주의사항</h4>
+                            <p class="text-sm text-gray-700">대용량 바이너리 파일은 Git LFS 사용 고려 (리포지토리 크기 및 속도 저하 방지)</p>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">📁 비유적 이해</h4>
+                            <p class="text-gray-700">'프로젝트명' 디지털 서류 보관함. 모든 문서와 파일, 수정본(버전)이 체계적으로 정리. 통째로 복사/업데이트하여 공유.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commit Section -->
+        <section id="commit" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Commit (커밋)</h2>
+                    <p class="text-xl text-gray-600">변경 사항의 스냅샷 기록 및 관리</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>Staging Area의 변경 사항을 로컬 리포지토리에 영구 저장하는 작업 단위입니다.</p>
+                            <p>각 커밋은 프로젝트의 특정 시점 <strong>스냅샷</strong>이며, 고유한 <strong>SHA-1 해시</strong>로 식별됩니다.</p>
+                            <p>이전 커밋을 가리켜 변경 이력의 <strong>체인(Chain)</strong>을 형성하며, 히스토리 탐색 및 복원이 가능합니다.</p>
+                            <p><strong>커밋 메시지:</strong> 변경 내용 및 이유 설명. 명확한 메시지는 협업 및 이력 추적에 중요합니다.</p>
+                            <p><strong>원자성(Atomicity):</strong> 하나의 커밋은 논리적으로 하나의 완성된 변경 단위 포함이 이상적입니다.</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-2 text-gray-700">
+                                <li><code class="bg-gray-200 px-1 rounded">git commit --amend</code>: 직전 커밋 수정 (메시지 변경, 파일 추가. Push 전 사용 권장)</li>
+                                <li><strong>체계적 메시지 컨벤션:</strong> (예: <code class="bg-gray-200 px-1 rounded">feat: 로그인 기능 추가</code>, <code class="bg-gray-200 px-1 rounded">fix(auth): 비밀번호 오류 수정</code>)</li>
+                                <li><strong>Git Hooks 활용:</strong> <code class="bg-gray-200 px-1 rounded">pre-commit</code> (커밋 전 코드 검사), <code class="bg-gray-200 px-1 rounded">commit-msg</code> (메시지 규칙 강제)</li>
+                                <li><strong>이슈 연결:</strong> 커밋 메시지에 <code class="bg-gray-200 px-1 rounded">Fixes #123</code>, <code class="bg-gray-200 px-1 rounded">Closes #456</code> 등으로 GitHub 이슈 자동 연결</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-red-50 border-l-4 border-red-400 rounded mb-6">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ 주의사항</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>커밋 메시지는 명확하고 상세하게 (모호한 메시지 지양)</li>
+                                <li>Push된 커밋 이력 변경(rebase, amend 후 force push)은 팀 협업 시 극히 신중하게</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">💾 비유적 이해</h4>
+                            <p class="text-gray-700">'문서 작업 중 의미있는 단계 완료 시 '저장'하는 행위. 각 저장본(커밋)에 고유 인증 도장(해시)이 찍히고, 이전 버전과 연결되어 이력 흐름 형성'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Branch Section -->
+        <section id="branch" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Branch (브랜치)</h2>
+                    <p class="text-xl text-gray-600">독립적인 개발 환경 구축 및 병렬 작업</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>현재 커밋을 가리키는 가벼운 <strong>포인터(참조)</strong>입니다. <code class="bg-gray-200 px-1 rounded">git branch &lt;name&gt;</code>으로 생성합니다.</p>
+                            <p>메인 코드라인(예: <code class="bg-gray-200 px-1 rounded">main</code>)에서 분기하여 독립적으로 코드를 개발합니다. 각 브랜치는 자체 커밋 이력을 보유합니다.</p>
+                            <p>새 기능 개발, 버그 수정, 실험 등을 메인 코드에 영향 없이 <strong>안전하게 병렬 진행</strong>할 수 있습니다.</p>
+                            <p><code class="bg-gray-200 px-1 rounded">git checkout &lt;branch&gt;</code> 또는 <code class="bg-gray-200 px-1 rounded">git switch &lt;branch&gt;</code>로 브랜치를 전환합니다.</p>
+                            <p><strong>HEAD:</strong> 현재 작업 중인 브랜치의 최신 커밋을 가리키는 특수 포인터. 브랜치 전환 시 함께 이동합니다.</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-2 text-gray-700">
+                                <li><code class="bg-gray-200 px-1 rounded">git rebase &lt;basebranch&gt;</code>: 브랜치의 시작점을 대상 브랜치의 최신 커밋으로 변경</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git cherry-pick &lt;commit-hash&gt;</code>: 다른 브랜치의 특정 커밋만 현재 브랜치로 적용</li>
+                                <li><strong>브랜치 보호 규칙 (GitHub):</strong> 중요 브랜치(<code class="bg-gray-200 px-1 rounded">main</code>) 직접 Push 금지, PR 통한 병합 강제</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-green-50 border-l-4 border-green-400 rounded mb-6">
+                            <h4 class="font-semibold text-green-800 mb-2">✅ 모범 사례</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>기능/버그 수정 단위로 짧은 수명의 브랜치 생성 (예: <code class="bg-gray-200 px-1 rounded">feature/user-auth</code>, <code class="bg-gray-200 px-1 rounded">fix/payment-bug</code>)</li>
+                                <li>작업 완료 후 메인 브랜치에 병합하고 해당 작업 브랜치는 삭제</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-green-100 to-emerald-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">🌿 비유적 이해</h4>
+                            <p class="text-gray-700">'나무 줄기(메인 프로젝트)에서 가지(브랜치)를 뻗어 별도 공간에서 작업 후, 다시 줄기에 합치는 과정'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Push & Pull Section -->
+        <section id="push-pull" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Push & Pull: 로컬과 원격 동기화</h2>
+                    <p class="text-xl text-gray-600">변경 사항 주고받기, 최신 상태 유지</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <!-- Push Section -->
+                        <div class="bg-blue-50 rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-blue-800">Push (푸시)</h3>
+                            <div class="space-y-4 text-gray-700 mb-6">
+                                <p><code class="bg-gray-200 px-1 rounded">git push [원격저장소] [로컬브랜치]</code>: 로컬 리포지토리의 커밋들을 원격 리포지토리로 전송/업로드</p>
+                                <p>로컬 작업 내용을 원격에 백업하고 팀원과 공유 (예: <code class="bg-gray-200 px-1 rounded">git push origin main</code>)</p>
+                                <p>최초 Push 또는 새 브랜치 Push 시: <code class="bg-gray-200 px-1 rounded">git push -u origin &lt;branch&gt;</code>로 추적 관계 설정</p>
+                            </div>
+
+                            <div class="p-3 bg-red-50 border-l-4 border-red-400 rounded mb-4">
+                                <h4 class="font-semibold text-red-800 mb-1">⚠️ Push 주의사항</h4>
+                                <ul class="text-xs space-y-1 text-gray-700">
+                                    <li>Push 전 항상 <code class="bg-gray-200 px-1 rounded">git pull</code>로 원격 최신 상태 반영</li>
+                                    <li><code class="bg-gray-200 px-1 rounded">git push --force</code>는 공유 브랜치에 절대 사용 금지</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-blue-100 rounded-lg">
+                                <h4 class="font-semibold mb-2">📤 Push 비유</h4>
+                                <p class="text-sm text-gray-700">'내 컴퓨터 작업 완료 후, 팀 공유 드라이브에 최신 버전 업로드'</p>
+                            </div>
+                        </div>
+
+                        <!-- Pull Section -->
+                        <div class="bg-green-50 rounded-2xl shadow-lg p-8">
+<h3 class="text-2xl font-bold mb-4 text-green-800">Pull (풀)</h3>
+                            <div class="space-y-4 text-gray-700 mb-6">
+                                <p><code class="bg-gray-200 px-1 rounded">git pull [원격저장소] [원격브랜치]</code>: 원격 리포지토리 최신 변경 사항을 로컬로 가져와 현재 로컬 브랜치에 자동 병합</p>
+                                <p>팀원의 변경 사항, 웹 수정 내용 등을 로컬에 반영하여 동기화 (예: <code class="bg-gray-200 px-1 rounded">git pull origin main</code>)</p>
+                                <p>내부적으로 <code class="bg-gray-200 px-1 rounded">git fetch</code> + <code class="bg-gray-200 px-1 rounded">git merge FETCH_HEAD</code> 수행</p>
+                            </div>
+
+                            <div class="p-3 bg-red-50 border-l-4 border-red-400 rounded mb-4">
+                                <h4 class="font-semibold text-red-800 mb-1">⚠️ Pull 주의사항</h4>
+                                <ul class="text-xs space-y-1 text-gray-700">
+                                    <li>Pull 시 로컬 변경 사항과 원격 변경 사항이 충돌할 수 있음</li>
+                                    <li>작업 시작 전, 커밋/푸시 전에 Pull하여 최신 상태 유지 권장</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 bg-green-100 rounded-lg">
+                                <h4 class="font-semibold mb-2">📥 Pull 비유</h4>
+                                <p class="text-sm text-gray-700">'팀 공유 드라이브 업데이트 파일 다운로드 + 내 작업 파일에 자동 병합'</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merge Section -->
+        <section id="merge" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Merge (머지)</h2>
+                    <p class="text-xl text-gray-600">분기된 작업 내용을 하나로 통합</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p><code class="bg-gray-200 px-1 rounded">git merge &lt;branch-to-merge&gt;</code>: 다른 브랜치의 변경 사항을 현재 브랜치로 통합</p>
+                            <p>독립 개발된 기능/버그 수정을 메인 코드라인에 반영 시 사용합니다.</p>
+                            <p><strong>Merge Conflict (병합 충돌):</strong> 두 브랜치에서 동일 파일 동일 부분을 동시 수정 시 발생. 개발자가 직접 해결 후 병합 완료</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">병합 방식</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">3-way Merge (Merge Commit)</h5>
+                                    <p class="text-sm text-gray-700">두 브랜치와 공통 조상을 기반으로 병합, 새 병합 커밋 생성. 이력 보존</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-green-800 mb-2">Fast-forward Merge</h5>
+                                    <p class="text-sm text-gray-700">대상 브랜치에 새 커밋 없을 시, 포인터만 이동. 병합 커밋 X, 선형 이력</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li><strong>Merge Strategy:</strong> 다양한 전략 제공 (<code class="bg-gray-200 px-1 rounded">recursive</code>, <code class="bg-gray-200 px-1 rounded">ours</code>, <code class="bg-gray-200 px-1 rounded">theirs</code> 등)</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git merge --abort</code>: 병합 중단 및 이전 상태 복원</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git merge --no-ff</code>: Fast-forward 가능한 경우에도 강제로 Merge Commit 생성</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-red-50 border-l-4 border-red-400 rounded mb-6">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ 주의사항</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>병합 전 대상 브랜치(예: <code class="bg-gray-200 px-1 rounded">main</code>) 최신 상태로 Pull, 충돌 최소화</li>
+                                <li>잦은 충돌은 작업 브랜치 장기화 또는 큰 작업 단위 신호</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">🔗 비유적 이해</h4>
+                            <p class="text-gray-700">'각자 수정하던 문서 파일들(브랜치)을 최종 검토 후 하나의 완결된 문서로 합치는 과정'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pull Request Section -->
+        <section id="pull-request" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Pull Request (PR)</h2>
+                    <p class="text-xl text-gray-600">변경사항 병합 요청 및 코드 리뷰의 장</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>자신의 브랜치 변경 사항을 다른 브랜치(보통 <code class="bg-gray-200 px-1 rounded">main</code>)에 병합해 달라고 공식 요청하는 GitHub 기능입니다.</p>
+                            <p><strong>코드 리뷰 플랫폼:</strong> 변경 내용(diff), 커밋 목록 확인, 댓글을 통한 피드백, 토론</p>
+                            <p>팀원 승인(Approval) 후 병합하여 코드 안정성 및 품질을 확보합니다. 오픈소스 기여 시 표준 방식입니다.</p>
+                            <p><strong>자동화 트리거:</strong> PR 생성/업데이트 시 GitHub Actions 워크플로우(CI/CD, 코드 검사 등) 자동 실행</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-2 text-gray-700">
+                                <li><strong>PR 템플릿:</strong> <code class="bg-gray-200 px-1 rounded">PULL_REQUEST_TEMPLATE.md</code>로 일관된 PR 작성 유도</li>
+                                <li><strong>자동화된 검증:</strong> GitHub Actions 연동, 테스트/빌드 결과 PR에 표시</li>
+                                <li><strong>이슈 연결:</strong> PR 설명에 <code class="bg-gray-200 px-1 rounded">Closes #이슈번호</code>로 자동 연결 및 종결</li>
+                                <li><strong>Draft PR:</strong> 작업 중인 PR을 초안 상태로 열어 피드백 미리 요청</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-green-50 border-l-4 border-green-400 rounded mb-6">
+                            <h4 class="font-semibold text-green-800 mb-2">✅ 모범 사례</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>PR은 가능한 작은 단위로 (리뷰 용이, 충돌 감소)</li>
+                                <li>상세한 설명 (배경, 문제, 구현, 테스트) 및 스크린샷/GIF 첨부</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-teal-100 to-cyan-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">🤝 비유적 이해</h4>
+                            <p class="text-gray-700">'작업한 문서 초안(변경 사항) 검토 요청 및 피드백 교환(코드 리뷰) 후 최종본에 반영(Merge)'. 공식적인 변경 제안 및 검증 과정</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fork Section -->
+        <section id="fork" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Fork (포크)</h2>
+                    <p class="text-xl text-gray-600">다른 사용자의 리포지토리 전체 복사 (GitHub 서버 상)</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>다른 사용자의 원격 리포지토리 전체를 자신의 GitHub 계정으로 복사하여 새 원격 리포지토리를 생성합니다.</p>
+                            <p>원본(Upstream)과 독립적으로 관리되며, 자유롭게 수정/변경 이력을 축적할 수 있습니다.</p>
+                            <p>주로 <strong>오픈소스 프로젝트 기여</strong>에 사용됩니다 (Fork → Clone → Modify → Push to Fork → Pull Request to Upstream).</p>
+                            <p>다른 코드 기반으로 새 프로젝트 시작, 원본 영향 없이 대규모 변경/실험 시에도 사용합니다.</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁: Upstream 동기화</h4>
+                            <div class="text-sm space-y-1 text-gray-700">
+                                <p class="mb-2">포크된 리포지토리를 원본(Upstream)의 최신 변경 사항으로 주기적 업데이트:</p>
+                                <ul class="space-y-1 ml-4">
+                                    <li><code class="bg-gray-200 px-1 rounded">git remote add upstream [원본_리포_URL]</code> (최초 1회)</li>
+                                    <li><code class="bg-gray-200 px-1 rounded">git fetch upstream</code></li>
+                                    <li><code class="bg-gray-200 px-1 rounded">git merge upstream/main</code> (현재 브랜치에 반영)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-red-50 border-l
+-4 border-red-400 rounded mb-6">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ 주의사항</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>Fork는 원격 복사. 로컬 작업하려면 반드시 <code class="bg-gray-200 px-1 rounded">git clone</code> 추가 수행</li>
+                                <li>포크된 저장소의 GitHub Actions 워크플로우 편집 허용 시 보안 위험 유의</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-yellow-100 to-amber-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">🍴 비유적 이해</h4>
+                            <p class="text-gray-700">'요리책 레시피(원작)를 내 노트에 옮겨 적은 후(포크), 나만의 스타일로 변경(수정)'. 원본을 내 소유 복사본으로 만들어 독립 작업</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clone Section -->
+        <section id="clone" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Clone (클론)</h2>
+                    <p class="text-xl text-gray-600">원격 리포지토리를 로컬 컴퓨터로 복제</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p><code class="bg-gray-200 px-1 rounded">git clone [원격_URL] [로컬_디렉토리명(선택)]</code>: 원격 리포지토리 전체를 로컬로 다운로드, 새 로컬 리포지토리 생성</p>
+                            <p>모든 파일과 <strong>전체 커밋 이력</strong>을 포함합니다. 원격 리포지토리를 <code class="bg-gray-200 px-1 rounded">origin</code>으로 자동 설정 및 연결합니다.</p>
+                            <p>프로젝트 작업 시작 또는 기존 프로젝트 참여 시 가장 먼저 수행하는 작업입니다.</p>
+                            <p>URL 형식: HTTPS (<code class="bg-gray-200 px-1 rounded">https://...</code>) 또는 SSH (<code class="bg-gray-200 px-1 rounded">git@...</code>)</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li><code class="bg-gray-200 px-1 rounded">git clone --depth &lt;N&gt;</code>: 최근 N개 커밋만 가져와 클론 속도 향상 (Shallow Clone)</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git clone --branch &lt;branch_name&gt; &lt;repo_url&gt;</code>: 특정 브랜치만 클론</li>
+                                <li><code class="bg-gray-200 px-1 rounded">git clone &lt;repo_url&gt; new-folder-name</code>: 지정된 폴더명으로 클론</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">📌 Fork vs Clone 비교</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Fork</h5>
+                                    <p class="text-sm text-gray-700">GitHub 서버 상에서 원격 리포지토리 복사 (원격 → 원격, 내 계정으로)</p>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">Clone</h5>
+                                    <p class="text-sm text-gray-700">원격 리포지토리를 내 로컬 컴퓨터로 다운로드 (원격 → 로컬)</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-4">오픈소스 기여: 보통 원본 Fork → 내 Fork를 로컬로 Clone</p>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-sky-100 to-blue-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">📥 비유적 이해</h4>
+                            <p class="text-gray-700">'클라우드 공유 폴더 전체를 내 컴퓨터로 다운로드하여 동기화 상태로 만들기'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Flow Section -->
+        <section id="github-flow" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">GitHub Flow: 효율적 협업 워크플로</h2>
+                    <p class="text-xl text-gray-600">간단하고 효과적인 팀 협업 방식</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">주요 특징 및 단계</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p><strong>단일 <code class="bg-gray-200 px-1 rounded">main</code> 브랜치 중심:</strong> 항상 배포 가능한(Deployable) 상태 유지 목표</p>
+                            <p><strong>기능 브랜치 활용:</strong> 모든 신규 작업(기능, 버그 수정)은 <code class="bg-gray-200 px-1 rounded">main</code>에서 분기된 짧은 수명의 브랜치에서 진행</p>
+                            <p><strong>Pull Request 필수:</strong> 작업 브랜치 변경 사항은 <code class="bg-gray-200 px-1 rounded">main</code> 통합 전 반드시 PR을 통해 코드 리뷰 및 토론</p>
+                            <p><strong>CI/CD 연동 용이:</strong> <code class="bg-gray-200 px-1 rounded">main</code> 브랜치 안정성 기반, 병합 시 자동 테스트 및 배포 파이프라인과 잘 통합</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">GitHub Flow 단계</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center p-4 bg-blue-50 rounded-lg">
+                                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                    <div>
+                                        <h5 class="font-semibold text-blue-800">Branch</h5>
+                                        <p class="text-sm text-gray-700"><code class="bg-gray-200 px-1 rounded">main</code>에서 새 작업 브랜치 생성</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-4 bg-green-50 rounded-lg">
+                                    <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                    <div>
+                                        <h5 class="font-semibold text-green-800">Commit & Push</h5>
+                                        <p class="text-sm text-gray-700">작업 브랜치에 커밋, 원격에 Push</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-4 bg-purple-50 rounded-lg">
+                                    <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                    <div>
+                                        <h5 class="font-semibold text-purple-800">Pull Request</h5>
+                                        <p class="text-sm text-gray-700"><code class="bg-gray-200 px-1 rounded">main</code>으로 병합 요청, 코드 리뷰</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-4 bg-orange-50 rounded-lg">
+                                    <div class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                    <div>
+                                        <h5 class="font-semibold text-orange-800">Discuss & Review</h5>
+                                        <p class="text-sm text-gray-700">피드백 반영, 추가 커밋 (필요시)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-4 bg-red-50 rounded-lg">
+                                    <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold mr-4">5</div>
+                                    <div>
+                                        <h5 class="font-semibold text-red-800">Merge & Deploy</h5>
+                                        <p class="text-sm text-gray-700">리뷰 승인 후 <code class="bg-gray-200 px-1 rounded">main</code> 병합, 자동 배포</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <h4 class="font-semibold text-yellow-800 mb-2">GitHub Flow vs Git Flow</h4>
+                            <p class="text-sm text-gray-700">Git Flow는 <code class="bg-gray-200 px-1 rounded">develop</code>, <code class="bg-gray-200 px-1 rounded">release</code>, <code class="bg-gray-200 px-1 rounded">hotfix</code> 등 여러 고정 브랜치를 사용하는 구조적 전략으로 복잡할 수 있으나, GitHub Flow는 <code class="bg-gray-200 px-1 rounded">main</code>과 기능 브랜치, PR 중심으로 단순하고 유연하여 빠른 반복 개발 및 지속적 배포에 적합합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Issues Section -->
+        <section id="issues" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Issue Tracking (이슈 관리)</h2>
+                    <p class="text-xl text-gray-600">작업, 버그, 기능 요청의 체계적 관리</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>GitHub 리포지토리 내 프로젝트 관련 작업 항목, 버그 리포트, 기능 개선 요청, 질문 등을 기록하고 추적하는 기능입니다.</p>
+                            <p>프로젝트 관리 및 팀 소통의 핵심 도구입니다.</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">주요 활용 방법</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">작업 관리</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>할 일 목록 생성</li>
+                                        <li>작업 할당(Assignee)</li>
+                                        <li>상태 추적(Open/Closed)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+<h5 class="font-semibold text-green-800 mb-2">분류 및 우선순위</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>라벨(Label)로 분류</li>
+                                        <li>마일스톤(Milestone)으로 그룹화</li>
+                                        <li>기한 설정 및 추적</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-purple-800 mb-2">Project Boards 연동</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>칸반 보드 형태로 시각화</li>
+                                        <li>작업 흐름 관리</li>
+                                        <li>진행 상황 추적</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-orange-800 mb-2">Pull Request 연결</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>특정 이슈 해결 PR 생성</li>
+                                        <li>이슈 연결 (<code class="bg-gray-200 px-1 rounded">Resolves #이슈번호</code>)</li>
+                                        <li>PR 병합 시 이슈 자동 종결</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li><strong>이슈 템플릿:</strong> <code class="bg-gray-200 px-1 rounded">.github/ISSUE_TEMPLATE</code>으로 버그 리포트, 기능 요청 등 유형별 템플릿 제공</li>
+                                <li><strong>자동화 (GitHub Actions):</strong> 특정 라벨 추가 시 자동 담당자 할당, 키워드 기반 자동 라벨링</li>
+                                <li><strong>저장된 답변:</strong> 자주 사용하는 답변을 저장해두고 빠르게 댓글 작성</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-rose-100 to-pink-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">📋 비유적 이해</h4>
+                            <p class="text-gray-700">'프로젝트 관리 보드의 작업 카드 / 버그 리포트 및 기능 제안 게시판'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gist Section -->
+        <section id="gist" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Gist (지스트)</h2>
+                    <p class="text-xl text-gray-600">간단한 코드 스니펫 및 메모 공유</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>GitHub에서 제공하는 서비스로, 짧은 코드 스니펫, 메모, 설정 파일, 스크립트 등을 저장하고 공유합니다.</p>
+                            <p>리포지토리 전체 공유는 부담스러울 때 유용합니다.</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">주요 기능</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">공개/비공개 설정</h5>
+                                    <p class="text-sm text-gray-700">공개 Gist는 검색 가능, 비공개 Gist는 URL 아는 사람만 접근</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-green-800 mb-2">버전 관리</h5>
+                                    <p class="text-sm text-gray-700">각 Gist는 Git 리포지토리처럼 버전 관리. 변경 이력 확인, Fork, Clone 가능</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">활용 예시</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="bg-purple-50 p-3 rounded-lg text-center">
+                                    <p class="text-sm font-medium text-purple-800">특정 함수 공유</p>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded-lg text-center">
+                                    <p class="text-sm font-medium text-orange-800">셸 스크립트 저장</p>
+                                </div>
+                                <div class="bg-red-50 p-3 rounded-lg text-center">
+                                    <p class="text-sm font-medium text-red-800">.gitignore 예시</p>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg text-center">
+                                    <p class="text-sm font-medium text-indigo-800">면접 코드 공유</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded mb-6">
+                            <h4 class="font-semibold text-blue-800 mb-2">🚀 고급 활용 팁</h4>
+                            <ul class="text-sm space-y-1 text-gray-700">
+                                <li>Gist는 웹사이트나 블로그에 <strong>Embed(삽입)</strong>하여 코드 표시 가능</li>
+                                <li>여러 파일로 구성된 Gist 생성 가능</li>
+                                <li>Gist 댓글로 피드백 주고받기</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-r from-violet-100 to-purple-100 rounded-lg">
+                            <h4 class="font-semibold mb-2">📝 비유적 이해</h4>
+                            <p class="text-gray-700">'간단한 코드 메모장 / 개인 코드 스니펫 저장소 / 빠른 공유용 코드 붙여넣기'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gitignore Section -->
+        <section id="gitignore" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">.gitignore: 특정 파일 무시</h2>
+                    <p class="text-xl text-gray-600">불필요한 파일 버전 관리에서 제외</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-50 rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">상세 설명</h3>
+                        <div class="space-y-4 text-gray-700 mb-8">
+                            <p>프로젝트 루트의 <code class="bg-gray-200 px-1 rounded">.gitignore</code> 텍스트 파일입니다.</p>
+                            <p>Git이 버전 관리에서 의도적으로 제외(무시)할 파일/폴더/패턴 목록을 정의합니다.</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">주요 제외 대상</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-red-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-red-800 mb-2">빌드 결과물</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><code class="bg-gray-200 px-1 rounded">/dist</code>, <code class="bg-gray-200 px-1 rounded">/build</code></li>
+                                        <li><code class="bg-gray-200 px-1 rounded">*.o</code>, <code class="bg-gray-200 px-1 rounded">*.pyc</code>, <code class="bg-gray-200 px-1 rounded">*.class</code></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-orange-800 mb-2">로그 파일</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><code class="bg-gray-200 px-1 rounded">*.log</code></li>
+                                        <li><code class="bg-gray-200 px-1 rounded">npm-debug.log*</code></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-green-800 mb-2">패키지 관리자 폴더</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><code class="bg-gray-200 px-1 rounded">node_modules/</code></li>
+                                        <li><code class="bg-gray-200 px-1 rounded">venv/</code>, <code class="bg-gray-200 px-1 rounded">vendor/</code></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h5 class="font-semibold text-blue-800 mb-2">OS/IDE 관련 파일</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><code class="bg-gray-200 px-1 rounded">.DS_Store</code>, <code class="bg-gray-200 px-1 rounded">Thumbs.db</code></li>
+                                        <li><code class="bg-gray-200 px-1 rounded">.idea/</code>, <code class="bg-gray-200 px-1 rounded">.vscode/</code></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg md:col-span-2">
+                                    <h5 class="font-semibold text-purple-800 mb-2">민감 정보 파일 (절대 커밋 금지!)</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><code class="bg-gray-200 px-1 rounded">.env</code>, API 키 파일, 비밀번호 포함 파일</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-semibold mb-4">효과</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>✓ 리포지토리 크기 작게 유지</li>
+                                <li>✓ 클론/푸시/풀 속도 개선</li>
+                                <li>✓ 민감 정보 유출 방지</li>
+                                <li>✓ 팀원 간 환경 차이로 인한 혼란 감소</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded mb-6">
+                            <h4 class="font-semibold text-yellow-800 mb-2">📝 문법</h4>
+                            <p class="text-sm text-gray-700 mb-2">각 줄에 패턴 작성:</p>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li><code class="bg-gray-200 px-1 rounded">/folder/</code> (루트의 폴더)</li>
+                                <li><code class="bg-gray-200 px-1 rounded">*.log</code> (모든 .log 파일)</li>
+                                <li><code class="bg-gray-200 px-1 rounded">!important.log</code> (예외)</li>
+                                <li><code class="bg-gray-200 px-1 rounded">#</code> (주석)</li>
+                            </ul>
