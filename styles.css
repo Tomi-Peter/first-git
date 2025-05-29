@@ -1,0 +1,211 @@
+/* Custom styles for the GitHub guide */
+
+.prose {
+    color: #374151;
+    line-height: 1.75;
+}
+
+.prose h1 {
+    color: #1f2937;
+    font-weight: 800;
+    font-size: 2.25rem;
+    line-height: 1.1111111;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.prose h2 {
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 1.3333333;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.prose h3 {
+    color: #374151;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.3333333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.prose p {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.prose ul {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-left: 1.625rem;
+}
+
+.prose li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.prose strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+.prose code {
+    color: #dc2626;
+    font-weight: 600;
+    font-size: 0.875rem;
+    background-color: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.prose pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7142857;
+    margin-top: 1.7142857em;
+    margin-bottom: 1.7142857em;
+    border-radius: 0.375rem;
+    padding: 0.8571429em 1.1428571em;
+}
+
+.prose pre code {
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+    font-weight: 400;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+/* Card styles */
+.feature-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.tip-card {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    color: #065f46;
+    border-left: 4px solid #10b981;
+}
+
+.warning-card {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    color: #92400e;
+    border-left: 4px solid #f59e0b;
+}
+
+.step-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3b82f6;
+}
+
+/* Navigation styles */
+.nav-link.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 3px solid #2563eb;
+}
+
+/* Video container styles */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .prose {
+        font-size: 1rem;
+        line-height: 1.625;
+    }
+    
+    .prose h1 {
+        font-size: 2rem;
+    }
+    
+    .prose h2 {
+        font-size: 1.75
+rem;
+    }
+    
+    .prose h3 {
+        font-size: 1.375rem;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
